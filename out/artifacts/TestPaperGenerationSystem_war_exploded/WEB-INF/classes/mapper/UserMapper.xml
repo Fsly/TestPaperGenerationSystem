@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UserMapper">
+    <select id="findTeacherByNP" parameterType="com.imu.bean.Teacher" resultType="com.imu.bean.Teacher">
+    SELECT * FROM `teacher` where Tname=#{tname} and Password=#{Password}
+    </select>
+
+    <select id="findAdminByNP" parameterType="com.imu.bean.Teacher" resultType="com.imu.bean.Admin">
+    SELECT * FROM `admin` where Name=#{tname} and Password=#{Password}
+    </select>
+
+    <insert id="insertNewTeacher" parameterType="com.imu.bean.Teacher">
+    insert into `teacher` values(#{tid},#{tname},#{College},#{Speciality},#{Telephone},#{Address},#{Password})
+    </insert>
+</mapper>
+
+
