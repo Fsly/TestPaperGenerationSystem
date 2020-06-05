@@ -169,7 +169,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <form id="registration_form" action="${pageContext.request.contextPath}/teacherRegister" method="post">
                     <div>
                         <label>
-                            <input placeholder="教师编号:" type="text" tabindex="1" name="Tid" required autofocus>
+                            <input placeholder="教师编号:" type="number" tabindex="1" name="Tid" required autofocus>
                         </label>
                     </div>
                     <div>
