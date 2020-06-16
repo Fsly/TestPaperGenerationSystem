@@ -14,6 +14,30 @@
     <insert id="insertNewTeacher" parameterType="com.imu.bean.Teacher">
     insert into `teacher` values(#{tid},#{tname},#{College},#{Speciality},#{Telephone},#{Address},#{Password})
     </insert>
+
+    <select id="showAllTeacher" resultType="com.imu.bean.Teacher">
+    SELECT * FROM `teacher`
+    </select>
+
+    <select id="showAllAdmin" resultType="com.imu.bean.Admin">
+    SELECT * FROM `admin`
+    </select>
+
+    <select id="findTeacherById" parameterType="Integer" resultType="com.imu.bean.Teacher">
+    SELECT * FROM `teacher` where Tid=#{id}
+    </select>
+
+    <select id="findAdminById" parameterType="Integer" resultType="com.imu.bean.Admin">
+    SELECT * FROM `admin` where Tid=#{id}
+    </select>
+    
+    <update id="updateTeacher" parameterType="com.imu.bean.Teacher">
+        UPDATE `teacher` SET Tname=#{tname},College=#{College},Speciality=#{Speciality},Telephone=#{Telephone},Address=#{Address} WHERE Tid=#{tid}
+    </update>
+
+    <delete id="deleteTeacherById" parameterType="Integer">
+        DELETE FROM `teacher` where Tid=#{id}
+    </delete>
 </mapper>
 
 

@@ -1,5 +1,6 @@
 <%@ page import="com.imu.bean.Teacher" %>
-<%@ page import="com.imu.bean.Admin" %><%--
+<%@ page import="com.imu.bean.Admin" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: Fsly
   Date: 2020/5/31
@@ -130,210 +131,68 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 out.print("若想查看用户，请先登录");
             }
         %></span></p>
-        <div class="col-md-9 product-model-sec">
-            <a href="single.html">
-                <div class="product-grid love-grid">
-                    <div class="more-product"></div>
-                    <div class="product-img b-link-stripe b-animate-go  thickbox">
-                        <img src="images/userPhoto.png" class="img-responsive" alt=""/>
-                        <div class="b-wrapper">
-                            <h4 class="b-animate b-from-left  b-delay03">
-                                <button class="btns"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>Quick View</button>
-                            </h4>
-                        </div>
-                    </div></a>
+
+        <%
+            List<Teacher> teachers=(List<Teacher>) request.getAttribute("userTeachers");
+            List<Admin> admins=(List<Admin>) request.getAttribute("userAdmins");
+            if(isLogin!=null&& (boolean) isLogin){
+            for(Teacher t:teachers){
+        %>
+        <div class="product-grid love-grid">
+            <%if (isAdmin!=null&&(boolean)isAdmin) {
+                out.print("<a href=\"teacherChange?Tid=" + t.getTid() + "\">");
+            }else {
+                out.print("<a href=\"#\">");
+            }%>
+            <div class="more-product"></div>
+            <div class="product-img b-link-stripe b-animate-go  thickbox">
+                <img src="images/userPhoto.png" class="img-responsive" alt="">
+                <div class="b-wrapper">
+                    <h4 class="b-animate b-from-left  b-delay03">
+                        <button class="btns"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span><%out.print(t.getTname());%></button>
+                    </h4>
+                </div>
+            </div>
+        </a>
             <div class="product-info simpleCart_shelfItem">
                 <div class="product-info-cust prt_name">
-                    <h4>王老师</h4>
-                    <p>15866668888</p>
-                    <span class="item_price">计算机学院 | 软件工程</span>					<input type="button" class="item_add items" value="修改">
-                    <input type="button" class="item_add items" value="删除">
+                    <h4>教师：<%out.print(t.getTname());%></h4>
+                    <p><%out.print(t.getTelephone());%></p>
+                    <span class="item_price">计算机学院 | <%out.print(t.getSpeciality());%></span><br>
+                    <%if (isAdmin!=null&&(boolean)isAdmin) {
+                        out.print("<input type=\"button\" class=\"item_add items\" value=\"修改\" onclick='location.href=(\"teacherChange?Tid="+t.getTid()+"\")'>");
+                        out.print("<input type=\"button\" class=\"item_add items\" value=\"删除\" onclick='location.href=(\"teacherDelete?Tid="+t.getTid()+"\")'>");
+                    }%>
                 </div>
                 <div class="clearfix"> </div>
             </div>
         </div>
-        <a href="single.html">
-            <div class="product-grid love-grid">
-                <div class="more-product"></div>
-                <div class="product-img b-link-stripe b-animate-go  thickbox">
-                    <img src="images/userPhoto.png" class="img-responsive" alt=""/>
-                    <div class="b-wrapper">
-                        <h4 class="b-animate b-from-left  b-delay03">
-                            <button class="btns"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>Quick View</button>
-                        </h4>
-                    </div>
-                </div>
-        </a>
-        <div class="product-info simpleCart_shelfItem">
-            <div class="product-info-cust prt_name">
-                <h4>李老师</h4>
-                <p>18888886666</p>
-                <span class="item_price">计算机学院 | 软件工程</span>
-                <input type="button" class="item_add items" value="修改">
-                <input type="button" class="item_add items" value="删除">
-            </div>
-            <div class="clearfix"> </div>
-        </div>
-    </div>
-    <a href="single.html">
-        <div class="product-grid love-grid">
+        <%}
+            for(Admin a:admins){
+        %>
+        <div class="product-grid love-grid"><a href="#">
             <div class="more-product"></div>
             <div class="product-img b-link-stripe b-animate-go  thickbox">
-                <img src="images/userPhoto.png" class="img-responsive" alt=""/>
+                <img src="images/userPhoto.png" class="img-responsive" alt="">
                 <div class="b-wrapper">
                     <h4 class="b-animate b-from-left  b-delay03">
-                        <button class="btns"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>Quick View</button>
+                        <button class="btns"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span><%out.print(a.getName());%></button>
                     </h4>
                 </div>
             </div>
-    </a>
-    <div class="product-info simpleCart_shelfItem">
-        <div class="product-info-cust prt_name">
-            <h4>管理员</h4>
-            <p>18844446666</p>
-            <span class="item_price">计算机学院 | 软件工程</span>
-            <input type="button" class="item_add items" value="修改">
-            <input type="button" class="item_add items" value="删除">
+        </a>
+            <div class="product-info simpleCart_shelfItem">
+                <div class="product-info-cust prt_name">
+                    <h4>管理员：<%out.print(a.getName());%></h4>
+                    <p><%out.print(a.getTelephone());%></p>
+                    <span class="item_price">计算机学院 | 管理员</span><br>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
         </div>
-        <div class="clearfix"> </div>
-    </div>
+        <%}}%>
 </div>
-
-
-
-
-<a href="single.html"><div class="product-grid love-grid">
-    <div class="more-product"></div>
-    <div class="product-img b-link-stripe b-animate-go  thickbox">
-        <img src="images/p7.jpg" class="img-responsive" alt=""/>
-        <div class="b-wrapper">
-            <h4 class="b-animate b-from-left  b-delay03">
-                <button class="btns"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>Quick View</button>
-            </h4>
-        </div>
-    </div></a>
-<div class="product-info simpleCart_shelfItem">
-    <div class="product-info-cust">
-        <h4>Wedding Flowers</h4>
-        <p>ID: SR4598</p>
-        <span class="item_price">$187.95</span>
-        <input type="text" class="item_quantity" value="1" />
-        <input type="button" class="item_add items" value="ADD">
-    </div>
-    <div class="clearfix"> </div>
-</div>
-</div>
-<a href="single.html"><div class="product-grid love-grid">
-    <div class="more-product"></div>
-    <div class="product-img b-link-stripe b-animate-go  thickbox">
-        <img src="images/p8.jpg" class="img-responsive" alt=""/>
-        <div class="b-wrapper">
-            <h4 class="b-animate b-from-left  b-delay03">
-                <button class="btns"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>Quick View</button>
-            </h4>
-        </div>
-    </div></a>
-<div class="product-info simpleCart_shelfItem">
-    <div class="product-info-cust">
-        <h4>Suits</h4>
-        <p>ID: S4BJ87</p>
-        <span class="item_price">$187.95</span>
-        <input type="text" class="item_quantity" value="1" />
-        <input type="button" class="item_add items" value="ADD">
-    </div>
-    <div class="clearfix"> </div>
-</div>
-</div>
-<a href="single.html"><div class="product-grid love-grid">
-    <div class="more-product"></div>
-    <div class="product-img b-link-stripe b-animate-go  thickbox">
-        <img src="images/p9.jpg" class="img-responsive" alt=""/>
-        <div class="b-wrapper">
-            <h4 class="b-animate b-from-left  b-delay03">
-                <button class="btns"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>Quick View</button>
-            </h4>
-        </div>
-    </div></a>
-<div class="product-info simpleCart_shelfItem">
-    <div class="product-info-cust">
-        <h4>Sherwani</h4>
-        <p>ID: SR4598</p>
-        <span class="item_price">$187.95</span>
-        <input type="text" class="item_quantity" value="1" />
-        <input type="button" class="item_add items" value="ADD">
-    </div>
-    <div class="clearfix"> </div>
-</div>
-</div>
-<a href="single.html"><div class="product-grid love-grid">
-    <div class="more-product"></div>
-    <div class="product-img b-link-stripe b-animate-go  thickbox">
-        <img src="images/p10.jpg" class="img-responsive" alt=""/>
-        <div class="b-wrapper">
-            <h4 class="b-animate b-from-left  b-delay03">
-                <button class="btns"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>Quick View</button>
-            </h4>
-        </div>
-    </div></a>
-<div class="product-info simpleCart_shelfItem">
-    <div class="product-info-cust">
-        <h4>Ethnic Wear</h4>
-        <p>ID: SR4598</p>
-        <span class="item_price">$187.95</span>
-        <input type="text" class="item_quantity" value="1" />
-        <input type="button" class="item_add items" value="ADD">
-    </div>
-    <div class="clearfix"> </div>
-</div>
-</div>
-<a href="single.html"><div class="product-grid love-grid">
-    <div class="more-product"></div>
-    <div class="product-img b-link-stripe b-animate-go  thickbox">
-        <img src="images/p11.jpg" class="img-responsive" alt=""/>
-        <div class="b-wrapper">
-            <h4 class="b-animate b-from-left  b-delay03">
-                <button class="btns"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>Quick View</button>
-            </h4>
-        </div>
-    </div></a>
-<div class="product-info simpleCart_shelfItem">
-    <div class="product-info-cust">
-        <h4>Watches</h4>
-        <p>ID: S4BJ87</p>
-        <span class="item_price">$187.95</span>
-        <input type="text" class="item_quantity" value="1" />
-        <input type="button" class="item_add items" value="ADD">
-    </div>
-    <div class="clearfix"> </div>
-</div>
-</div>
-<a href="single.html"><div class="product-grid love-grid">
-    <div class="more-product"></div>
-    <div class="product-img b-link-stripe b-animate-go  thickbox">
-        <img src="images/p12.jpg" class="img-responsive" alt=""/>
-        <div class="b-wrapper">
-            <h4 class="b-animate b-from-left  b-delay03">
-                <button class="btns"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>Quick View</button>
-            </h4>
-        </div>
-    </div></a>
-<div class="product-info simpleCart_shelfItem">
-    <div class="product-info-cust">
-        <h4>Jewellery #1</h4>
-        <p>ID: SR4598</p>
-        <span class="item_price">$187.95</span>
-        <input type="text" class="item_quantity" value="1" />
-        <input type="button" class="item_add items" value="ADD">
-    </div>
-    <div class="clearfix"> </div>
-</div>
-</div>
-</div>
-<div class="rsidebar span_1_of_left">
-
-
-</div>
-</div>
+<div class="rsidebar span_1_of_left"></div>
 </div>
 </body>
 </html>

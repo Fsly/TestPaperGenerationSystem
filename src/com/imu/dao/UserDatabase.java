@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 public class UserDatabase {
     private static SqlSessionFactory ssf;
@@ -54,4 +55,47 @@ public class UserDatabase {
         session.commit();
         return result;
     }
+
+    public List<Teacher> showAllTeacher(){
+        //生产一个sqlSession
+        SqlSession session = ssf.openSession();
+
+        return session.selectList("UserMapper.showAllTeacher");
+    }
+
+    public List<Admin> showAllAdmin(){
+        //生产一个sqlSession
+        SqlSession session = ssf.openSession();
+
+        return session.selectList("UserMapper.showAllAdmin");
+    }
+
+    public Teacher findTeacherById(Integer id){
+        //生产一个sqlSession
+        SqlSession session = ssf.openSession();
+
+        return session.selectOne("UserMapper.findTeacherById", id);
+    }
+
+    public Admin findAdminById(Integer id){
+        //生产一个sqlSession
+        SqlSession session = ssf.openSession();
+
+        return session.selectOne("UserMapper.findAdminById", id);
+    }
+
+    public void updateTeacher(Teacher teacher){
+        //生产一个sqlSession
+        SqlSession session = ssf.openSession();
+        session.update("UserMapper.updateTeacher",teacher);
+        session.commit();
+    }
+
+    public void deleteTeacherById(Integer id){
+        //生产一个sqlSession
+        SqlSession session = ssf.openSession();
+        session.delete("UserMapper.deleteTeacherById",id);
+        session.commit();
+    }
+
 }

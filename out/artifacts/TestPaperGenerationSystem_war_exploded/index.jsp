@@ -45,10 +45,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             Object userAdmin = session.getAttribute("userAdmin");
             Object userTeacher = session.getAttribute("userTeacher");
             if(isLogin!=null&& (boolean) isLogin) {
-              if (isAdmin!=null&&(boolean)isAdmin) {
+              if (isAdmin != null && (boolean) isAdmin) {
                 out.print("管理员");
               } else {
-                out.print(((Teacher)userTeacher).getSpeciality());
+                out.print(((Teacher) userTeacher).getSpeciality());
               }
             }
           %></a></li>
@@ -58,21 +58,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <ul>
           <li class="top_link">Phone:<a href="mailto:info@example.com"><%
             if(isLogin!=null&& (boolean) isLogin) {
-              if (isAdmin!=null&&(boolean)isAdmin) {
-                out.print(((Admin)userAdmin).getTelephone());
+              if (isAdmin != null && (boolean) isAdmin) {
+                out.print(((Admin) userAdmin).getTelephone());
               } else {
-                out.print(((Teacher)userTeacher).getTelephone());
+                out.print(((Teacher) userTeacher).getTelephone());
               }
             }
           %></a></li>|
           <li class="top_link"><a href="login.jsp"><%
             if(isLogin!=null&& (boolean) isLogin) {
-              if (isAdmin!=null&&(boolean)isAdmin) {
-                out.print(((Admin)userAdmin).getName());
+              if (isAdmin != null && (boolean) isAdmin) {
+                out.print(((Admin) userAdmin).getName());
               } else {
-                out.print(((Teacher)userTeacher).getTname());
+                out.print(((Teacher) userTeacher).getTname());
               }
-            }else{
+            }else {
               out.print("登录");
             }
           %></a></li>
@@ -94,7 +94,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <ul class="memenu skyblue"><li class="active"><a href="index.jsp">主页</a></li>
           <li class="grid"><a href="paper_generation.jsp">试卷生成</a></li>
           <li class="grid"><a href="question_management.jsp">管理题库</a></li>
-          <li class="grid"><a href="user_management.jsp">管理用户</a></li>
+          <li class="grid"><a href="${pageContext.request.contextPath}/userManager">管理用户</a></li>
           <li class="grid"><a href="#">退出登录</a></li>
         </ul>
         <div class="clearfix"> </div>
@@ -122,18 +122,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       <h5>用户名:
       <%
         if(isLogin!=null&& (boolean) isLogin) {
-        if (isAdmin!=null&&(boolean)isAdmin) {
-          out.print(((Admin)userAdmin).getName());
-        } else {
-          out.print(((Teacher)userTeacher).getTname());
+          if (isAdmin != null && (boolean) isAdmin) {
+            out.print(((Admin) userAdmin).getName());
+          } else {
+            out.print(((Teacher) userTeacher).getTname());
+          }
         }
-      }
       %>
       </h5>
       <h5>用户等级:
         <%
           if(isLogin!=null&& (boolean) isLogin) {
-            if (isAdmin!=null&&(boolean)isAdmin) {
+            if (isAdmin != null && (boolean) isAdmin) {
               out.print("管理员");
             } else {
               out.print("教师");

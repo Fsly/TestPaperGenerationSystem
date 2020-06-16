@@ -1,16 +1,15 @@
 <%@ page import="com.imu.bean.Teacher" %>
-<%@ page import="com.imu.bean.Admin" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="com.imu.bean.Admin" %><%--
   Created by IntelliJ IDEA.
   User: Fsly
-  Date: 2020/5/31
-  Time: 9:54
+  Date: 2020/5/30
+  Time: 23:29
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Wedding Store A Ecommerce Category Flat Bootstarp Resposive Website Template | Products :: w3layouts</title>
+    <title>Wedding Store A Ecommerce Category Flat Bootstarp Resposive Website Template | Account :: w3layouts</title>
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery.min.js"></script>
@@ -30,8 +29,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script type="text/javascript" src="js/memenu.js"></script>
     <script>$(document).ready(function(){$(".memenu").memenu();});</script>
     <!-- /start menu -->
-    <link href="css/form.css" rel="stylesheet" type="text/css" media="all" />
-
 </head>
 <body>
 <!--header-->
@@ -113,86 +110,105 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
 </div>
 <!---->
-<!--header//-->
-<div class="product-model">
-    <div class="container">
-        <ol class="breadcrumb">
-            <li><a href="index.jsp">Home</a></li>
-            <li class="active">User Management</li>
-        </ol>
-        <h2>用户管理</h2>
-        <p align="center"><span style="color: #dc143c; "><%
-            if(isLogin!=null&& (boolean) isLogin) {
-                if (isAdmin!=null&&(boolean)isAdmin) {
-                } else {
-                    out.print("若想管理用户，请联系管理员");
-                }
-            }else{
-                out.print("若想查看用户，请先登录");
-            }
-        %></span></p>
+<div class="container">
+    <ol class="breadcrumb">
+        <li><a href="index.jsp">Home</a></li>
+        <li class="active">Account</li>
+    </ol>
+    <div class="registration">
+        <div class="registration_left">
+            <h2>修改教师信息</h2>
+            <p><span style="color: #dc143c; ">${requestScope.errorMsg}</span></p>
+            <!-- [if IE]
+               < link rel='stylesheet' type='text/css' href='ie.css'/>
+            [endif] -->
 
-        <%
-            List<Teacher> teachers=(List<Teacher>) request.getAttribute("userTeachers");
-            List<Admin> admins=(List<Admin>) request.getAttribute("userAdmins");
-            if(isLogin!=null&& (boolean) isLogin){
-            for(Teacher t:teachers){
-        %>
-        <div class="product-grid love-grid">
-            <%if (isAdmin!=null&&(boolean)isAdmin) {
-                out.print("<a href=\"teacherChange?Tid=" + t.getTid() + "\">");
-            }else {
-                out.print("<a href=\"#\">");
-            }%>
-            <div class="more-product"></div>
-            <div class="product-img b-link-stripe b-animate-go  thickbox">
-                <img src="images/userPhoto.png" class="img-responsive" alt="">
-                <div class="b-wrapper">
-                    <h4 class="b-animate b-from-left  b-delay03">
-                        <button class="btns"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span><%out.print(t.getTname());%></button>
-                    </h4>
-                </div>
-            </div>
-        </a>
-            <div class="product-info simpleCart_shelfItem">
-                <div class="product-info-cust prt_name">
-                    <h4>教师：<%out.print(t.getTname());%></h4>
-                    <p><%out.print(t.getTelephone());%></p>
-                    <span class="item_price">计算机学院 | <%out.print(t.getSpeciality());%></span><br>
-                    <%if (isAdmin!=null&&(boolean)isAdmin) {
-                        out.print("<input type=\"button\" class=\"item_add items\" value=\"修改\" onclick='location.href=(\"teacherChange?Tid="+t.getTid()+"\")'>");
-                        out.print("<input type=\"button\" class=\"item_add items\" value=\"删除\" onclick='location.href=(\"teacherDelete?Tid="+t.getTid()+"\")'>");
-                    }%>
-                </div>
-                <div class="clearfix"> </div>
+            <!-- [if lt IE 7]>
+               < link rel='stylesheet' type='text/css' href='ie6.css'/>
+            <! [endif] -->
+            <script>
+                (function() {
+
+                    // Create input element for testing
+                    var inputs = document.createElement('input');
+
+                    // Create the supports object
+                    var supports = {};
+
+                    supports.autofocus   = 'autofocus' in inputs;
+                    supports.required    = 'required' in inputs;
+                    supports.placeholder = 'placeholder' in inputs;
+
+                    // Fallback for autofocus attribute
+                    if(!supports.autofocus) {
+
+                    }
+
+                    // Fallback for required attribute
+                    if(!supports.required) {
+
+                    }
+
+                    // Fallback for placeholder attribute
+                    if(!supports.placeholder) {
+
+                    }
+
+                    // Change text inside send button on submit
+                    var send = document.getElementById('register-submit');
+                    if(send) {
+                        send.onclick = function () {
+                            this.innerHTML = '...Sending';
+                        }
+                    }
+
+                })();
+            </script>
+            <div class="registration_form">
+                <!-- Form -->
+                <%Teacher teacher= (Teacher) request.getAttribute("userTeacher");%>
+                <form id="registration_form" action="${pageContext.request.contextPath}/saveChange" method="post">
+                    <div>
+                        <label>
+                            <%out.print("<input placeholder=\"教师编号:\" type=\"number\" tabindex=\"1\" name=\"Tid\" value=\""+teacher.getTid()+"\" required autofocus>");%>
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <%out.print("<input placeholder=\"姓名:\" type=\"text\" tabindex=\"2\" name=\"TName\" value=\""+teacher.getTname()+"\" required autofocus>");%>
+
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <%out.print("<input placeholder=\"学院:\" type=\"text\" tabindex=\"3\" name=\"College\" value=\""+teacher.getCollege()+"\" required>");%>
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <%out.print("<input placeholder=\"专业:\" type=\"text\" tabindex=\"4\" name=\"Speciality\" value=\""+teacher.getSpeciality()+"\" required>");%>
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <%out.print("<input placeholder=\"电话:\" type=\"text\" tabindex=\"5\" name=\"Telephone\" value=\""+teacher.getTelephone()+"\" required>");%>
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <%out.print("<input placeholder=\"地址:\" type=\"text\" tabindex=\"6\" name=\"Address\" value=\""+teacher.getAddress()+"\" required>");%>
+                        </label>
+                    </div>
+                    <div>
+                        <input type="submit" value="保存" id="register-submit">
+                    </div>
+                </form>
+                <!-- /Form -->
             </div>
         </div>
-        <%}
-            for(Admin a:admins){
-        %>
-        <div class="product-grid love-grid"><a href="#">
-            <div class="more-product"></div>
-            <div class="product-img b-link-stripe b-animate-go  thickbox">
-                <img src="images/userPhoto.png" class="img-responsive" alt="">
-                <div class="b-wrapper">
-                    <h4 class="b-animate b-from-left  b-delay03">
-                        <button class="btns"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span><%out.print(a.getName());%></button>
-                    </h4>
-                </div>
-            </div>
-        </a>
-            <div class="product-info simpleCart_shelfItem">
-                <div class="product-info-cust prt_name">
-                    <h4>管理员：<%out.print(a.getName());%></h4>
-                    <p><%out.print(a.getTelephone());%></p>
-                    <span class="item_price">计算机学院 | 管理员</span><br>
-                </div>
-                <div class="clearfix"> </div>
-            </div>
-        </div>
-        <%}}%>
+        <div class="clearfix"></div>
+    </div>
 </div>
-<div class="rsidebar span_1_of_left"></div>
-</div>
+
 </body>
 </html>

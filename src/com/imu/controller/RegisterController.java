@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
 
 @Controller
 public class RegisterController {
@@ -18,10 +19,11 @@ public class RegisterController {
     private UserService us = new UserService();
 
     @RequestMapping(value = "/teacherRegister", method = RequestMethod.POST)
-    public ModelAndView teacherRegister(HttpServletRequest request, HttpSession session) {
+    public ModelAndView teacherRegister(HttpServletRequest request, HttpSession session) throws UnsupportedEncodingException {
 
         ModelAndView mv = new ModelAndView();
 
+        request.setCharacterEncoding("UTF-8");
         Integer tid = Integer.parseInt(request.getParameter("Tid"));
         String tname = request.getParameter("TName");
         String college = request.getParameter("College");
