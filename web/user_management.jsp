@@ -120,6 +120,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <li class="active">User Management</li>
         </ol>
         <h2>用户管理</h2>
+        <p align="center"><span style="color: #dc143c; "><%
+            if(isLogin!=null&& (boolean) isLogin) {
+                if (isAdmin!=null&&(boolean)isAdmin) {
+                } else {
+                    out.print("若想管理用户，请联系管理员");
+                }
+            }else{
+                out.print("若想查看用户，请先登录");
+            }
+        %></span></p>
         <div class="col-md-9 product-model-sec">
             <a href="single.html">
                 <div class="product-grid love-grid">

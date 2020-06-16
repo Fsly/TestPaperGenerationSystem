@@ -1,15 +1,16 @@
-<%@ page import="com.imu.bean.Teacher" %>
-<%@ page import="com.imu.bean.Admin" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: Fsly
-  Date: 2020/5/30
-  Time: 23:29
+  Date: 2020/6/16
+  Time: 16:04
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="com.imu.bean.Teacher" %>
+<%@ page import="com.imu.bean.Admin" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Wedding Store A Ecommerce Category Flat Bootstarp Resposive Website Template | Account :: w3layouts</title>
+    <title>Wedding Store A Ecommerce Category Flat Bootstarp Resposive Website Template | Contact :: w3layouts</title>
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery.min.js"></script>
@@ -110,113 +111,41 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
 </div>
 <!---->
-<div class="container">
-    <ol class="breadcrumb">
-        <li><a href="index.jsp">Home</a></li>
-        <li class="active">Account</li>
-    </ol>
-    <div class="registration">
-        <div class="registration_left">
-            <h2>新用户？<span> 创建帐户吧！ </span></h2>
-            <p><span style="color: #dc143c; ">${requestScope.errorMsg}</span></p>
-            <!-- [if IE]
-               < link rel='stylesheet' type='text/css' href='ie.css'/>
-            [endif] -->
+<div class="contact">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="index.jsp">Home</a></li>
+            <li class="active">Custom</li>
+        </ol>
+        <!---start-contact---->
+        <h3>试题详情</h3>
+        <div class="section group">
 
-            <!-- [if lt IE 7]>
-               < link rel='stylesheet' type='text/css' href='ie6.css'/>
-            <! [endif] -->
-            <script>
-                (function() {
+            <div class="col-md-6 span_2_of_3">
+                <div class="contact-form">
+                    <form>
+                        <div>
+                            <span><label>题目总数</label></span>
+                            <span><input name="EID" type="number" class="textbox"></span>
+                        </div>
+                        <div>
+                            <span><label>每道题难度（用小数点 . 隔开，例如“1.1.2.4.5”）</label></span>
+                            <span><input name="Subject" type="text" class="textbox"></span>
+                        </div>
+                        <div>
+                            <span><label>每道题章节（用小数点 . 隔开，例如“1.1.2.4.5”）</label></span>
+                            <span><input name="Chapter" type="text" class="textbox"></span>
+                        </div>
+                        <div>
+                            <span><input type="submit" class="mybutton" value="完成"></span>
+                        </div>
+                    </form>
 
-                    // Create input element for testing
-                    var inputs = document.createElement('input');
-
-                    // Create the supports object
-                    var supports = {};
-
-                    supports.autofocus   = 'autofocus' in inputs;
-                    supports.required    = 'required' in inputs;
-                    supports.placeholder = 'placeholder' in inputs;
-
-                    // Fallback for autofocus attribute
-                    if(!supports.autofocus) {
-
-                    }
-
-                    // Fallback for required attribute
-                    if(!supports.required) {
-
-                    }
-
-                    // Fallback for placeholder attribute
-                    if(!supports.placeholder) {
-
-                    }
-
-                    // Change text inside send button on submit
-                    var send = document.getElementById('register-submit');
-                    if(send) {
-                        send.onclick = function () {
-                            this.innerHTML = '...Sending';
-                        }
-                    }
-
-                })();
-            </script>
-            <div class="registration_form">
-                <!-- Form -->
-                <form id="registration_form" action="${pageContext.request.contextPath}/teacherRegister" method="post">
-                    <div>
-                        <label>
-                            <input placeholder="教师编号:" type="number" tabindex="1" name="Tid" required autofocus>
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input placeholder="姓名:" type="text" tabindex="2" name="TName" required autofocus>
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input placeholder="学院:" type="text" tabindex="3" name="College" required>
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input placeholder="专业:" type="text" tabindex="4" name="Speciality" required>
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input placeholder="电话:" type="text" tabindex="5" name="Telephone" required>
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input placeholder="地址:" type="text" tabindex="6" name="Address" required>
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input placeholder="密码:" type="password" tabindex="7" name="Password" required>
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input placeholder="重复密码:" type="password" tabindex="8" name="Password2" required>
-                        </label>
-                    </div>
-                    <div>
-                        <input type="submit" value="注册用户" id="register-submit">
-                    </div>
-                </form>
-                <!-- /Form -->
+                </div>
             </div>
         </div>
-        <div class="clearfix"></div>
     </div>
 </div>
-
 </body>
 </html>
+
