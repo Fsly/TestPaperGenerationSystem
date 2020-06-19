@@ -93,9 +93,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
             <div class="top-nav">
                 <ul class="memenu skyblue"><li class="active"><a href="index.jsp">主页</a></li>
-                    <li class="grid"><a href="paper_generation.jsp">试卷生成</a></li>
-                    <li class="grid"><a href="question_management.jsp">管理题库</a></li>
-                    <li class="grid"><a href="user_management.jsp">管理用户</a></li>
+                    <li class="grid"><a href="${pageContext.request.contextPath}/getfixAll">试卷生成</a></li>
+                    <li class="grid"><a href="${pageContext.request.contextPath}/getAll_question">管理题库</a></li>
+                    <li class="grid"><a href="${pageContext.request.contextPath}/userManager">管理用户</a></li>
                     <li class="grid"><a href="#">退出登录</a></li>
                 </ul>
                 <div class="clearfix"> </div>

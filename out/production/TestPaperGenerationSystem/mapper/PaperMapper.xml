@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PaperMapper">
+    <select id="allPaper" resultType="com.imu.bean.Paper">
+    SELECT DISTINCT  PID,Pname,Subject,Tname from `paper`
+    </select>
+
+    <select id="getnumber" resultType="java.lang.Integer">
+    SELECT count(DISTINCT PID) from `paper`
+    </select>
+
+    <insert id="insertPaper">
+        insert into `paper` values(#{pid},#{pname},now(),#{Subject},#{eid},#{tname})
+    </insert>
+</mapper>
+
+

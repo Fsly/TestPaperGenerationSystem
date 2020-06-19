@@ -1,5 +1,7 @@
 <%@ page import="com.imu.bean.Teacher" %>
-<%@ page import="com.imu.bean.Admin" %><%--
+<%@ page import="com.imu.bean.Admin" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--
   Created by IntelliJ IDEA.
   User: Fsly
   Date: 2020/5/31
@@ -92,9 +94,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
             <div class="top-nav">
                 <ul class="memenu skyblue"><li class="active"><a href="index.jsp">主页</a></li>
-                    <li class="grid"><a href="paper_generation.jsp">试卷生成</a></li>
-                    <li class="grid"><a href="question_management.jsp">管理题库</a></li>
-                    <li class="grid"><a href="user_management.jsp">管理用户</a></li>
+                    <li class="grid"><a href="${pageContext.request.contextPath}/getfixAll">试卷生成</a></li>
+                    <li class="grid"><a href="${pageContext.request.contextPath}/getAll_question">管理题库</a></li>
+                    <li class="grid"><a href="${pageContext.request.contextPath}/userManager">管理用户</a></li>
                     <li class="grid"><a href="#">退出登录</a></li>
                 </ul>
                 <div class="clearfix"> </div>
@@ -120,6 +122,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="check-out">
                 <div class=" cart-items">
                     <h3>题库</h3>
+                    <p><span style="color: #dc143c; "><%
+                        if(isLogin!=null&& (boolean) isLogin) {
+                        }else{
+                            out.print("请先登录");
+                        }
+                    %></span></p>
                     <script>$(document).ready(function(c) {
                         $('.close1').on('click', function(c){
                             $('.cart-header').fadeOut('slow', function(c){
@@ -146,75 +154,56 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <li> </li>
                             <div class="clearfix"> </div>
                         </ul>
-                        <ul class="cart-header">
-                            <div class="close1"> </div>
-                            <li class="ring-in"><span>018945</span></li>
-                            <li><span>编译原理</span></li>
-                            <li><span>第一章</span></li>
-                            <li><span>1</span></li>
-                            <li> <a href="single.html" class="add-cart cart-check">修改题目</a></li>
-                            <div class="clearfix"> </div>
-                        </ul>
-                        <ul class=" cart-header1">
-                            <div class="close2"> </div>
-                            <li class="ring-in"><span>018947</span></li>
-                            <li><span>编译原理</span></li>
-                            <li><span>第一章</span></li>
-                            <li><span>2</span></li>
-                            <li> <a href="single.html" class="add-cart cart-check">修改题目</a></li>
-                            <div class="clearfix"> </div>
-                        </ul>
-                        <ul class=" cart-header2">
-                            <div class="close3"> </div>
-                            <li class="ring-in"><span>018955</span></li>
-                            <li><span>编译原理</span></li>
-                            <li><span>第一章</span></li>
-                            <li><span>4</span></li>
-                            <li> <a href="single.html" class="add-cart cart-check">查看题目</a></li>
-                            <div class="clearfix"> </div>
-                        </ul>
-                        <ul class=" cart-header2">
-                            <div class="close3"> </div>
-                            <li class="ring-in"><span>018960</span></li>
-                            <li><span>编译原理</span></li>
-                            <li><span>第一章</span></li>
-                            <li><span>4</span></li>
-                            <li> <a href="single.html" class="add-cart cart-check">查看题目</a></li>
-                            <div class="clearfix"> </div>
-                        </ul>
-                        <ul class=" cart-header2">
-                            <div class="close3"> </div>
-                            <li class="ring-in"><span>018964</span></li>
-                            <li><span>编译原理</span></li>
-                            <li><span>第一章</span></li>
-                            <li><span>4</span></li>
-                            <li> <a href="single.html" class="add-cart cart-check">查看题目</a></li>
-                            <div class="clearfix"> </div>
-                        </ul>
-                        <ul class=" cart-header2">
-                            <div class="close3"> </div>
-                            <li class="ring-in"><span>018964</span></li>
-                            <li><span>编译原理</span></li>
-                            <li><span>第一章</span></li>
-                            <li><span>4</span></li>
-                            <li> <a href="single.html" class="add-cart cart-check">查看题目</a></li>
-                            <div class="clearfix"> </div>
-                        </ul>
+
+                        <%
+                            if(isLogin!=null&& (boolean) isLogin) {
+
+                        %>
+
+                        <c:forEach items="${qList}" var="i" varStatus="id" begin="0">
+                            <ul class="cart-header">
+                                <li class="ring-in"><span>${i.eid}</span></li>
+                                <li><span>${i.subject}</span></li>
+                                <li><span>${i.chapter}</span></li>
+                                <li><span>${i.grade}</span></li>
+                                <li> <a href="${pageContext.request.contextPath}/detail_question?Eid=${i.eid}" class="add-cart cart-check">修改题目</a>
+                                <a href="${pageContext.request.contextPath}/delete_question?Eid=${i.eid}" class="add-cart cart-check">删除题目</a></li>
+                                <div class="clearfix"> </div>
+                            </ul>
+                        </c:forEach>
+
+                        <%
+                            }
+                        %>
+
                     </div>
                 </div>
             </div>
         </div>
+
+        <%
+            if(isLogin!=null&& (boolean) isLogin) {
+
+        %>
+
         <div class="col-md-3 cart-total">
-            <a class="continue" href="#">添加试题</a>
-            <div class="contact-form"><form>
-                <div>
-                    <span><input name="EID" type="text" class="textbox"></span>
-                </div>
-                <div>
-                    <span><input type="submit" class="mybutton" value="查询试题"></span>
-                </div>
-            </form></div>
+            <a class="continue" href="question_detail.jsp">添加试题</a>
+            <div class="contact-form">
+                <form method="post" action="${pageContext.request.contextPath}/like_find">
+                    <div>
+                        <span><input name="finding" type="text" class="textbox"></span>
+                    </div>
+                    <div>
+                        <span><input type="submit" class="mybutton" value="查询试题"></span>
+                    </div>
+                </form>
+            </div>
         </div>
+
+        <%
+            }
+        %>
+
     </div>
 </div>
 </div>

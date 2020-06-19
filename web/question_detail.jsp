@@ -1,5 +1,6 @@
 <%@ page import="com.imu.bean.Teacher" %>
-<%@ page import="com.imu.bean.Admin" %><%--
+<%@ page import="com.imu.bean.Admin" %>
+<%--
   Created by IntelliJ IDEA.
   User: Fsly
   Date: 2020/5/31
@@ -92,9 +93,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
             <div class="top-nav">
                 <ul class="memenu skyblue"><li class="active"><a href="index.jsp">主页</a></li>
-                    <li class="grid"><a href="paper_generation.jsp">试卷生成</a></li>
-                    <li class="grid"><a href="question_management.jsp">管理题库</a></li>
-                    <li class="grid"><a href="user_management.jsp">管理用户</a></li>
+                    <li class="grid"><a href="${pageContext.request.contextPath}/getfixAll">试卷生成</a></li>
+                    <li class="grid"><a href="${pageContext.request.contextPath}/getAll_question">管理题库</a></li>
+                    <li class="grid"><a href="${pageContext.request.contextPath}/userManager">管理用户</a></li>
                     <li class="grid"><a href="#">退出登录</a></li>
                 </ul>
                 <div class="clearfix"> </div>
@@ -113,7 +114,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="contact">
     <div class="container">
         <ol class="breadcrumb">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="index.jsp">Home</a></li>
             <li class="active">Detail</li>
         </ol>
         <!---start-contact---->
@@ -122,30 +123,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
             <div class="col-md-6 span_2_of_3">
                 <div class="contact-form">
-                    <form>
+                    <form method="post" action="${pageContext.request.contextPath}/update_question">
                         <div>
                             <span><label>题号</label></span>
-                            <span><input name="EID" type="text" class="textbox"></span>
+                            <span><input name="EID" type="text" class="textbox" value="${question.eid}"></span>
                         </div>
                         <div>
                             <span><label>学科</label></span>
-                            <span><input name="Subject" type="text" class="textbox"></span>
+                            <span><input name="Subject" type="text" class="textbox" value="${question.subject}"></span>
                         </div>
                         <div>
                             <span><label>章节</label></span>
-                            <span><input name="Chapter" type="text" class="textbox"></span>
+                            <span><input name="Chapter" type="text" class="textbox" value="${question.chapter}"></span>
                         </div>
                         <div>
                             <span><label>难度</label></span>
-                            <span><input name="Grade" type="text" class="textbox"></span>
+                            <span><input name="Grade" type="text" class="textbox" value="${question.grade}"></span>
                         </div>
                         <div>
                             <span><label>描述</label></span>
-                            <span><textarea name="Describe"> </textarea></span>
+                            <span><textarea name="Des" >${question.describe} </textarea></span>
                         </div>
                         <div>
                             <span><label>答案</label></span>
-                            <span><textarea name="Key"> </textarea></span>
+                            <span><textarea name="Keyy" > ${question.key}</textarea></span>
                         </div>
                         <div>
                             <span><input type="submit" class="mybutton" value="完成"></span>

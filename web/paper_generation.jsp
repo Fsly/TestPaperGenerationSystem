@@ -1,5 +1,7 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.imu.bean.Admin" %>
-<%@ page import="com.imu.bean.Teacher" %><%--
+<%@ page import="com.imu.bean.Teacher" %>
+<%--
   Created by IntelliJ IDEA.
   User: Fsly
   Date: 2020/5/31
@@ -92,9 +94,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
             <div class="top-nav">
                 <ul class="memenu skyblue"><li class="active"><a href="index.jsp">主页</a></li>
-                    <li class="grid"><a href="paper_generation.jsp">试卷生成</a></li>
-                    <li class="grid"><a href="question_management.jsp">管理题库</a></li>
-                    <li class="grid"><a href="user_management.jsp">管理用户</a></li>
+                    <li class="grid"><a href="${pageContext.request.contextPath}/getfixAll">试卷生成</a></li>
+                    <li class="grid"><a href="${pageContext.request.contextPath}/getAll_question">管理题库</a></li>
+                    <li class="grid"><a href="${pageContext.request.contextPath}/userManager">管理用户</a></li>
                     <li class="grid"><a href="#">退出登录</a></li>
                 </ul>
                 <div class="clearfix"> </div>
@@ -139,46 +141,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                     <div class="in-check" >
                         <ul class="unit">
-                            <li><span>题号</span></li>
+                            <li><span>卷子号</span></li>
+                            <li><span>卷子名</span></li>
                             <li><span>学科</span></li>
-                            <li><span>章节</span></li>
-                            <li><span>难度</span></li>
+                            <li><span>出题人</span></li>
                             <li> </li>
                             <div class="clearfix"> </div>
                         </ul>
-                        <ul class="cart-header">
-                            <div class="close1"> </div>
-                            <li class="ring-in"><span>018945</span></li>
-                            <li><span>编译原理</span></li>
-                            <li><span>第一章</span></li>
-                            <li><span>1</span></li>
-                            <li> <a href="single.html" class="add-cart cart-check">查看题目</a></li>
-                            <div class="clearfix"> </div>
-                        </ul>
-                        <ul class=" cart-header1">
-                            <div class="close2"> </div>
-                            <li class="ring-in"><span>018947</span></li>
-                            <li><span>编译原理</span></li>
-                            <li><span>第一章</span></li>
-                            <li><span>2</span></li>
-                            <li> <a href="single.html" class="add-cart cart-check">查看题目</a></li>
-                            <div class="clearfix"> </div>
-                        </ul>
-                        <ul class=" cart-header2">
-                            <div class="close3"> </div>
-                            <li class="ring-in"><span>018964</span></li>
-                            <li><span>编译原理</span></li>
-                            <li><span>第一章</span></li>
-                            <li><span>4</span></li>
-                            <li> <a href="single.html" class="add-cart cart-check">查看题目</a></li>
-                            <div class="clearfix"> </div>
-                        </ul>
+                        <c:forEach items="${pList}" var="i" varStatus="id" begin="0">
+                            <ul class="cart-header">
+                                <div class="close1"> </div>
+                                <li class="ring-in"><span>${i.pid}</span></li>
+                                <li><span>${i.pname}</span></li>
+                                <li><span>${i.subject}</span></li>
+                                <li><span>${i.tname}</span></li>
+                                <li> <a href="single.html" class="add-cart cart-check">查看题目</a></li>
+                                <div class="clearfix"> </div>
+                            </ul>
+                        </c:forEach>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-md-3 cart-total">
-            <a class="continue" href="#">固定模式生成</a>
+            <a class="continue" href="${pageContext.request.contextPath}/createPaper?s='6 3 1'">固定模式生成</a>
             <div class="price-details">
                 <h3>试题数据</h3>
                 <span>难度1-2</span>
@@ -192,7 +178,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <h4 class="last-price">TOTAL</h4>
             <span class="total final">10道</span>
             <div class="clearfix"></div>
-            <a class="order" href="#">定制模式生成</a>
+            <a class="order" href="${pageContext.request.contextPath}/createPaper">定制模式生成</a>
             <div class="total-item">
                 <h3>设置题目内容</h3>
                 <h4>暂无定制信息</h4>

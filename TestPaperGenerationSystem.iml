@@ -30,5 +30,6 @@
     <orderEntry type="library" name="spring-webmvc-5.2.2.RELEASE" level="project" />
     <orderEntry type="library" name="ant-1.10.3" level="project" />
     <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
+    <orderEntry type="library" name="jstl" level="project" />
   </component>
 </module>

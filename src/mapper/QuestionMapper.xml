@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="QuestionMapper">
+<select id="allQuestion" resultType="com.imu.bean.Question">
+        SELECT * FROM `examination_questions`
+</select>
+
+<select id="randomQuestion" resultType="com.imu.bean.Question">
+        select * from examination_questions where Grade=#{Grade}  order by rand() limit ${eid}
+</select>
+
+<select id="like_findQuestion" parameterType="String" resultType="com.imu.bean.Question">
+        SELECT * FROM examination_questions WHERE Des LIKE '%${Describe}%' or Keyy LIKE '%${Describe}%' or Subject LIKE '%${Describe}%' or Chapter LIKE '%${Describe}%' or Grade LIKE '%${Describe}%'
+</select>
+
+<update id="changeQuestion_Des" parameterType="com.imu.bean.Question">
+        UPDATE `examination_questions` SET Des=#{Des} WHERE EID=#{eid}
+</update>
+
+<update id="changeQuestion_Key" parameterType="com.imu.bean.Question">
+        UPDATE `examination_questions` set Keyy=#{Keyy} where EID=#{eid}
+</update>
+
+<insert id="insertQuestion" parameterType="com.imu.bean.Question">
+        insert into `examination_questions` values(#{eid},#{Des},#{Keyy},#{Subject},#{Chapter},#{Grade})
+</insert>
+
+<delete id="deleteQuestion" parameterType="com.imu.bean.Question">
+        delete from `examination_questions` where EID=#{eid}
+</delete>
+
+<select id="findQuestionById" parameterType="Integer" resultType="com.imu.bean.Question">
+    SELECT * FROM `examination_questions` where Eid=#{id}
+</select>
+
+<update id="changeQuestion" parameterType="com.imu.bean.Question" >
+        UPDATE `examination_questions` set des=#{Des},Keyy=#{Keyy},Subject=#{Subject},Chapter=#{Chapter},Grade=#{Grade} where EID=#{eid}
+</update>
+</mapper>
+
+

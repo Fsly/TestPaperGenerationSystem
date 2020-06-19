@@ -5,10 +5,18 @@
        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean name="userDatabase" class="com.imu.dao.UserDatabase"/>
+    <bean name="questionDatabase" class="com.imu.dao.QuestionDatabase"/>
+    <bean name="paperDatabase" class="com.imu.dao.PaperDatabase"/>
 
     <!-- 配置service -->
     <bean name="userService" class="com.imu.service.UserService">
         <property name="userDatabase" ref="userDatabase"/>
+    </bean>
+    <bean name="questionService" class="com.imu.service.QuestionService">
+        <property name="questionDatabase" ref="questionDatabase"/>
+    </bean>
+    <bean name="paperService" class="com.imu.service.PaperService">
+        <property name="paperDatabase" ref="paperDatabase"/>
     </bean>
 
 </beans>

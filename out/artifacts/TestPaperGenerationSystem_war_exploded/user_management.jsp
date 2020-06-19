@@ -95,9 +95,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
             <div class="top-nav">
                 <ul class="memenu skyblue"><li class="active"><a href="index.jsp">主页</a></li>
-                    <li class="grid"><a href="paper_generation.jsp">试卷生成</a></li>
-                    <li class="grid"><a href="question_management.jsp">管理题库</a></li>
-                    <li class="grid"><a href="user_management.jsp">管理用户</a></li>
+                    <li class="grid"><a href="${pageContext.request.contextPath}/getfixAll">试卷生成</a></li>
+                    <li class="grid"><a href="${pageContext.request.contextPath}/getAll_question">管理题库</a></li>
+                    <li class="grid"><a href="${pageContext.request.contextPath}/userManager">管理用户</a></li>
                     <li class="grid"><a href="#">退出登录</a></li>
                 </ul>
                 <div class="clearfix"> </div>
@@ -158,7 +158,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="product-info-cust prt_name">
                     <h4>教师：<%out.print(t.getTname());%></h4>
                     <p><%out.print(t.getTelephone());%></p>
-                    <span class="item_price">计算机学院 | <%out.print(t.getSpeciality());%></span><br>
+                    <span class="item_price"><%out.print(t.getCollege());%> | <%out.print(t.getSpeciality());%></span><br>
                     <%if (isAdmin!=null&&(boolean)isAdmin) {
                         out.print("<input type=\"button\" class=\"item_add items\" value=\"修改\" onclick='location.href=(\"teacherChange?Tid="+t.getTid()+"\")'>");
                         out.print("<input type=\"button\" class=\"item_add items\" value=\"删除\" onclick='location.href=(\"teacherDelete?Tid="+t.getTid()+"\")'>");
