@@ -14,6 +14,14 @@
     <insert id="insertPaper">
         insert into `paper` values(#{pid},#{pname},now(),#{Subject},#{eid},#{tname})
     </insert>
+
+    <select id="findPaperByPid" parameterType="Integer" resultType="com.imu.bean.Question">
+        SELECT * FROM `examination_questions` where EID in(select TID from paper where PID=#{id})
+    </select>
+
+    <select id="findPaperDetailByPid" parameterType="Integer" resultType="com.imu.bean.Paper">
+        select * from paper where PID=#{id}
+    </select>
 </mapper>
 
 

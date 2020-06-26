@@ -17,6 +17,7 @@
     </bean>
     <bean name="paperService" class="com.imu.service.PaperService">
         <property name="paperDatabase" ref="paperDatabase"/>
+        <property name="questionDatabase" ref="questionDatabase"/>
     </bean>
 
 </beans>

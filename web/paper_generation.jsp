@@ -114,14 +114,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!---->
 <div class="checkout">
     <div class="container">
+
+
         <ol class="breadcrumb">
             <li><a href="index.jsp">Home</a></li>
             <li class="active">Paper</li>
         </ol>
+
+        <%if(isLogin!=null&& (boolean) isLogin) {%>
+
         <div class="col-md-9 product-price1">
             <div class="check-out">
                 <div class=" cart-items">
-                    <h3>计算机学院2019级软工2021-2022秋季学期 编译原理试卷</h3>
+                    <h3>试卷生成器</h3>
                     <script>$(document).ready(function(c) {
                         $('.close1').on('click', function(c){
                             $('.cart-header').fadeOut('slow', function(c){
@@ -138,7 +143,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         });
                     });
                     </script>
-
                     <div class="in-check" >
                         <ul class="unit">
                             <li><span>卷子号</span></li>
@@ -150,12 +154,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </ul>
                         <c:forEach items="${pList}" var="i" varStatus="id" begin="0">
                             <ul class="cart-header">
-                                <div class="close1"> </div>
+                                <%--<div class="close1"> </div>--%>
                                 <li class="ring-in"><span>${i.pid}</span></li>
                                 <li><span>${i.pname}</span></li>
                                 <li><span>${i.subject}</span></li>
                                 <li><span>${i.tname}</span></li>
-                                <li> <a href="single.html" class="add-cart cart-check">查看题目</a></li>
+                                <li> <a href="${pageContext.request.contextPath}/paperShow?pid=${i.pid}" class="add-cart cart-check">查看题目</a></li>
                                 <div class="clearfix"> </div>
                             </ul>
                         </c:forEach>
@@ -163,8 +167,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
             </div>
         </div>
+
         <div class="col-md-3 cart-total">
-            <a class="continue" href="${pageContext.request.contextPath}/createPaper?s='6 3 1'">固定模式生成</a>
+            <div class="total-item">
+                <form name="myform">
+                <h3>生成科目:</h3>
+                <input type="text" name="Speciality" value="<%
+                if(isLogin!=null&& (boolean) isLogin&&isAdmin!=null&&!(boolean)isAdmin){
+                %><%=((Teacher)userTeacher).getSpeciality()%><%}%>">
+                <input type="text" name="Tname" value="<%
+                if(isLogin!=null&& (boolean) isLogin&&isAdmin!=null&&!(boolean)isAdmin){
+                %><%=((Teacher)userTeacher).getTname()%><%}%>" hidden>
+                </form>
+            </div>
+            <script type="text/javascript">
+                function tishi()
+                {
+                    var t=prompt("请输入试卷的名字","模拟试卷")
+                    if (t!=null && t!=="")
+                    {
+                        var name=myform.Speciality.value;
+                        var tname=myform.Tname.value;
+                        window.location.href='${pageContext.request.contextPath}/createPaper?s=6.3.1&pname='+t+'&pclass='+name+'&tname='+tname
+                    }
+                }
+            </script>
+            <a class="continue" href="#" onclick="tishi()">固定模式生成</a>
             <div class="price-details">
                 <h3>试题数据</h3>
                 <span>难度1-2</span>
@@ -178,15 +206,45 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <h4 class="last-price">TOTAL</h4>
             <span class="total final">10道</span>
             <div class="clearfix"></div>
-            <a class="order" href="${pageContext.request.contextPath}/createPaper">定制模式生成</a>
+
+            <%
+                Object dzeid= session.getAttribute("dzeid");
+                Object dzsubject= session.getAttribute("dzsubject");
+                Object dzchapter= session.getAttribute("dzchapter");
+            %>
+            <form name="dzform">
+                <input type="text" name="dzeid" value="<%if(dzeid!=null){%><%=dzeid%><%}%>" hidden>
+            </form>
+            <script type="text/javascript">
+                function dingzhi()
+                {
+                    var t=prompt("请输入试卷的名字","模拟试卷")
+
+                    var dze=dzform.dzeid.value;
+                    var name=myform.Speciality.value;
+                    var tname=myform.Tname.value;
+                    if (t!=null && t!==""&&dze!=null)
+                    {
+                        window.location.href='${pageContext.request.contextPath}/dzCreatePaper?pname='+t+'&pclass='+name+'&tname='+tname
+                    }
+                }
+            </script>
+            <a class="order" href="#" onclick="dingzhi()">定制模式生成</a>
             <div class="total-item">
                 <h3>设置题目内容</h3>
-                <h4>暂无定制信息</h4>
-                <a class="cpns" href="#">修改定制</a>
+                <% if(dzeid==null){%><h4>暂无定制信息</h4>
+                <%}else{%><h4>已有定制信息</h4>
+                <%}%>
+                <a class="cpns" href="custom_management.jsp">修改定制</a>
 
                 <p><a href="#">注意：</a>根据定制生成您所需试卷</p>
             </div>
         </div>
+        <%
+            }else{
+                out.print("<p><span style=\"color: #dc143c; \">请先登录</span></p>");
+            }
+        %>
     </div>
 </div>
 <!---->

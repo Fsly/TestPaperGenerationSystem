@@ -123,18 +123,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
             <div class="col-md-6 span_2_of_3">
                 <div class="contact-form">
-                    <form>
+                    <form method="post" action="${pageContext.request.contextPath}/dzSession">
                         <div>
                             <span><label>题目总数</label></span>
-                            <span><input name="EID" type="number" class="textbox"></span>
+                            <span><input name="EID" type="number" class="textbox" value="<%=session.getAttribute("dzeid")%>"></span>
                         </div>
                         <div>
-                            <span><label>每道题难度（用小数点 . 隔开，例如“1.1.2.4.5”）</label></span>
-                            <span><input name="Subject" type="text" class="textbox"></span>
+                            <span><label>每道题难度（用小数点 . 隔开，例如“1.1.2.4.5”表示5道题难度依次为1、1、2、4、5）</label></span>
+                            <span><input name="Subject" type="text" class="textbox" value="<%=session.getAttribute("dzsubject")%>"></span>
                         </div>
                         <div>
-                            <span><label>每道题章节（用小数点 . 隔开，例如“1.1.2.4.5”）</label></span>
-                            <span><input name="Chapter" type="text" class="textbox"></span>
+                            <span><label>每道题章节（用小数点 . 隔开，例如“1.1.2.4.5”表示5道题分别来自1、1、2、4、5章节）</label></span>
+                            <span><input name="Chapter" type="text" class="textbox" value="<%=session.getAttribute("dzchapter")%>"></span>
                         </div>
                         <div>
                             <span><input type="submit" class="mybutton" value="完成"></span>

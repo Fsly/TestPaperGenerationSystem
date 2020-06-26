@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Fsly
@@ -7,6 +8,9 @@
 --%>
 <%@ page import="com.imu.bean.Admin" %>
 <%@ page import="com.imu.bean.Teacher" %>
+<%@ page import="com.imu.bean.Paper" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.imu.bean.Question" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -117,16 +121,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <li><a href="index.jsp">Home</a></li>
             <li class="active">Browse</li>
         </ol>
-        <h2>计算机学院2019级软工2021-2022秋季学期 编译原理试卷</h2>
+        <%
+            Paper paperDetail=(Paper)request.getAttribute("paperDetail");
+        %>
+        <h2><%=paperDetail.getPname()%></h2>
+        <h4>命题人：<%=paperDetail.getTname()%></h4>
+        <h4>命题时间：<%=paperDetail.getDate()%></h4>
+        <h4>科目：<%=paperDetail.getSubject()%></h4>
         <div class="col-md-6 log">
-            <h5>1.  以下选项正确的是（ ）</h5>
-            <h5>A.第一个 B.第二个 C.第三个 D.第四个 </h5>
+            <c:forEach items="${paperQuestion}" var="i" varStatus="id" begin="0">
+
+            <h5>题目：${i.describe}</h5>
+            <h5>答案：${i.key} </h5>
             <br>
-            <h5>2.  以下选项不正确的是（ ）</h5>
-            <h5>A.第一个 B.第二个 C.第三个 D.第四个 </h5>
-            <br>
-            <h5>3.  以下选项错误的是（ ）</h5>
-            <h5>A.第一个 B.第二个 C.第三个 D.第四个 </h5>
+            </c:forEach>
 
         </div>
 

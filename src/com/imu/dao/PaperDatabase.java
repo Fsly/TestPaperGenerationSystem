@@ -41,4 +41,14 @@ public class PaperDatabase {
         }
         session.commit();
     }
+
+    public List<Question> findPaperByPid(Integer pid) {
+        SqlSession session = ssf.openSession();
+        return session.selectList("PaperMapper.findPaperByPid",pid);
+    }
+
+    public List<Paper> findPaperDetailByPid(Integer pid) {
+        SqlSession session = ssf.openSession();
+        return session.selectList("PaperMapper.findPaperDetailByPid",pid);
+    }
 }
