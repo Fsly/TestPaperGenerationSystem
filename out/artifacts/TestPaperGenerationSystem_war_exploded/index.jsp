@@ -95,7 +95,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           <li class="grid"><a href="${pageContext.request.contextPath}/getfixAll">试卷生成</a></li>
           <li class="grid"><a href="${pageContext.request.contextPath}/getAll_question">管理题库</a></li>
           <li class="grid"><a href="${pageContext.request.contextPath}/userManager">管理用户</a></li>
-          <li class="grid"><a href="#">退出登录</a></li>
+          <li class="grid"><a href="${pageContext.request.contextPath}/loginOff">退出登录</a></li>
         </ul>
         <div class="clearfix"> </div>
       </div>

@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="TestPaperGenerationSystem:war">
+    <output-path>$PROJECT_DIR$/out/artifacts/TestPaperGenerationSystem_war</output-path>
+    <root id="archive" name="TestPaperGenerationSystem_war.war">
+      <element id="artifact" artifact-name="TestPaperGenerationSystem:war exploded" />
+      <element id="dir-copy" path="$PROJECT_DIR$/web/WEB-INF" />
+    </root>
+  </artifact>
+</component>

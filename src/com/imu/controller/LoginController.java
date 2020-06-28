@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
 
 
 @Controller
@@ -20,7 +21,8 @@ public class LoginController {
     private UserService us = new UserService();
 
     @RequestMapping(value = "/userLogin",method = RequestMethod.POST)
-    public ModelAndView userLogin(HttpServletRequest request, HttpSession session){
+    public ModelAndView userLogin(HttpServletRequest request, HttpSession session) throws UnsupportedEncodingException {
+        request.setCharacterEncoding("UTF-8");
 
         ModelAndView mv=new ModelAndView();
 

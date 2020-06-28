@@ -100,4 +100,13 @@ public class UserManagerController {
         mv.setViewName("index");
         return mv;
     }
+
+    @RequestMapping(value = "/loginOff",method = RequestMethod.GET)
+    public ModelAndView loginOff(HttpSession session){
+        ModelAndView mv = new ModelAndView();
+        session.setAttribute("isLogin",false);
+        mv.addObject("errorMsg", "退出登录成功！");
+        mv.setViewName("index");
+        return mv;
+    }
 }
